@@ -19,40 +19,40 @@
 
 package app.coronawarn.server.services.distribution.assembly.exposureconfig;
 
-import app.coronawarn.server.common.protocols.internal.RiskScoreParameters;
+import app.coronawarn.server.common.protocols.internal.RiskScoreClassification;
 
 /**
- * Provides the Exposure Configuration based on a file in the file system.<br> The existing file must be a valid YAML
+ * Provides the risk score classification based on a file in the file system.<br> The existing file must be a valid YAML
  * file, and must match the specification of the proto file risk_score_parameters.proto.
  */
-public class ExposureConfigurationProvider {
+public class RiskScoreClassificationProvider {
 
-  private ExposureConfigurationProvider() {
+  private RiskScoreClassificationProvider() {
   }
 
   /**
-   * The location of the exposure configuration master file.
+   * The location of the risk score classification master file.
    */
-  public static final String MASTER_FILE = "exposure-config/master.yaml";
+  public static final String MASTER_FILE = "risk-score-classification/master.yaml";
 
   /**
-   * Fetches the master configuration as a RiskScoreParameters instance.
+   * Fetches the master configuration as a {@link RiskScoreClassification} instance.
    *
-   * @return the exposure configuration as RiskScoreParameters
+   * @return the risk score classification as {@link RiskScoreClassification}
    * @throws UnableToLoadFileException when the file/transformation did not succeed
    */
-  public static RiskScoreParameters readMasterFile() throws UnableToLoadFileException {
+  public static RiskScoreClassification readMasterFile() throws UnableToLoadFileException {
     return readFile(MASTER_FILE);
   }
 
   /**
-   * Fetches an exposure configuration file based on the given path. The path must be available in the classloader.
+   * Fetches a risk score classic file based on the given path. The path must be available in the classloader.
    *
    * @param path the path, e.g. folder/my-exposure-configuration.yaml
    * @return the RiskScoreParameters
    * @throws UnableToLoadFileException when the file/transformation did not succeed
    */
-  public static RiskScoreParameters readFile(String path) throws UnableToLoadFileException {
-    return YamlLoader.loadYamlIntoProtobufBuilder(path, RiskScoreParameters.Builder.class).build();
+  public static RiskScoreClassification readFile(String path) throws UnableToLoadFileException {
+    return YamlLoader.loadYamlIntoProtobufBuilder(path, RiskScoreClassification.Builder.class).build();
   }
 }
