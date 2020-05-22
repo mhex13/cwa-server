@@ -20,8 +20,7 @@
 package app.coronawarn.server.services.distribution.assembly.exposureconfig.validation;
 
 /**
- * A validation error, found during the process of validating the Exposure Configuration. Can either be score or weight
- * related.
+ * A validation error, found during validation of a generated protocol buffers message class instance.
  */
 public interface ValidationError {
 
